@@ -1,17 +1,12 @@
 const { Router } = require("express");
-const {
-  createDonationHandler,
-  getUserDonationsHandler,
-  getReceivedDonationsHandler,
-  confirmDonationHandler,
-} = require("../handlers/donationHandler");
+const { createDonationHandler, getDonationsByUserHandler, getDonationsByFoundationHandler } = require("../handlers/donationHandler");
 
 const donationRouter = Router();
 
-// Rutas para las donaciones
-donationRouter.post("/", createDonationHandler);
-donationRouter.get("/", getUserDonationsHandler);
-donationRouter.get("/received", getReceivedDonationsHandler);
-donationRouter.put("/:donationId/confirm", confirmDonationHandler);
+// Rutas para donaciones
+donationRouter.post("/create", createDonationHandler); // Crear una nueva donación
+donationRouter.get("/user/:userId", getDonationsByUserHandler); // Obtener donaciones realizadas por un usuario
+donationRouter.get("/foundation/:foundationId", getDonationsByFoundationHandler); // Obtener donaciones recibidas por una fundación
 
 module.exports = donationRouter;
+

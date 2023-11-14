@@ -69,8 +69,8 @@ Comment.belongsTo(Publication);
 User.hasMany(Donation);
 Donation.belongsTo(User);
 
-User.belongsToMany(User, { through: 'Chat' });
-//User.belongsToMany(User, { through: 'Chat', as: 'participants' });
+// User.belongsToMany(User, { through: 'Chat' })
+User.belongsToMany(User, { through: 'Chat', as: 'participants' });
 
 
 Publication.belongsTo(PublicationType);

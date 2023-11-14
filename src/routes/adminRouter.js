@@ -6,7 +6,7 @@ const {
   reviewPublicationsHandler,
   assignRoleHandler,
   removeRoleHandler,
-  getStatisticsHandler,
+//   getStatisticsHandler,
 } = require("../handlers/adminHandler");
 
 const adminRouter = Router();
@@ -18,6 +18,6 @@ adminRouter.put("/users/:userId/deactivate", deactivateAccountHandler);
 adminRouter.get("/publications", reviewPublicationsHandler);
 adminRouter.put("/users/:userId/assign-role", assignRoleHandler);
 adminRouter.put("/users/:userId/remove-role", removeRoleHandler);
-adminRouter.get("/statistics", getStatisticsHandler);
+// adminRouter.get("/statistics", getStatisticsHandler);
 
 module.exports = adminRouter;

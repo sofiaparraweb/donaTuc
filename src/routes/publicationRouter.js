@@ -1,17 +1,21 @@
+// routers/publicationRouter.js
+
 const { Router } = require("express");
 const {
   createPublicationHandler,
-  getAllPublicationsHandler,
-  commentOnPublicationHandler,
-  reportPublicationHandler,
+  editPublicationHandler,
+  deletePublicationHandler,
+  banPublicationHandler,
+  getPublicationsHandler,
 } = require("../handlers/publicationHandler");
 
 const publicationRouter = Router();
 
-// Rutas para las publicaciones
+// Rutas para publicaciones
 publicationRouter.post("/", createPublicationHandler);
-publicationRouter.get("/", getAllPublicationsHandler);
-publicationRouter.post("/:publicationId/comment", commentOnPublicationHandler);
-publicationRouter.post("/:publicationId/report", reportPublicationHandler);
+publicationRouter.put("/:id", editPublicationHandler);
+publicationRouter.delete("/:id", deletePublicationHandler);
+publicationRouter.put("/:id/ban", banPublicationHandler);
+publicationRouter.get("/", getPublicationsHandler);
 
 module.exports = publicationRouter;

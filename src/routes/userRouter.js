@@ -1,23 +1,22 @@
+// routes/userRouter.js
 const { Router } = require("express");
 const {
-  registerHandler,
-  loginHandler,
-  getUserProfileHandler,
-  editUserProfileHandler,
-  changeUserRoleHandler,
-  verifyAccountHandler,
-  deactivateAccountHandler,
+  getUserByIdHandler,
+  getUserByEmailHandler,
+  editUserHandler,
+  deleteUserHandler,
+  getAllUsersHandler,
+  assignUserRoleHandler,
 } = require("../handlers/userHandler");
 
 const userRouter = Router();
 
 // Rutas para usuarios
-userRouter.post("/register", registerHandler);
-userRouter.post("/login", loginHandler);
-userRouter.get("/:userId/profile", getUserProfileHandler);
-userRouter.put("/:userId/edit-profile", editUserProfileHandler);
-userRouter.put("/:userId/change-role", changeUserRoleHandler);
-userRouter.put("/:userId/verify-account", verifyAccountHandler);
-userRouter.put("/:userId/deactivate-account", deactivateAccountHandler);
+userRouter.get("/:userId", getUserByIdHandler);
+userRouter.get("/email/:email", getUserByEmailHandler);
+userRouter.put("/:userId/edit", editUserHandler);
+userRouter.delete("/:userId", deleteUserHandler);
+userRouter.get("/", getAllUsersHandler);
+userRouter.put("/:userId/assign-role", assignUserRoleHandler);
 
 module.exports = userRouter;

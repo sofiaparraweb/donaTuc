@@ -1,15 +1,16 @@
+// routes/filterRouter.js
+
 const { Router } = require("express");
-const {
-  filterByLocationHandler,
-  filterByDateHandler,
-  filterAlphabeticallyHandler,
-} = require("../handlers/filterHandler");
+const { getFilteredPublicationsHandler } = require("../handlers/filterHandler");
 
 const filterRouter = Router();
 
-// Rutas para el filtrado de publicaciones
-filterRouter.get("/location/:location", filterByLocationHandler);
-filterRouter.get("/date", filterByDateHandler);
-filterRouter.get("/alphabetical", filterAlphabeticallyHandler);
+// Rutas para filtros de publicaciones
+filterRouter.get("/date", getFilteredPublicationsHandler); // Filtrar por fecha de publicación
+filterRouter.get("/type/:type", getFilteredPublicationsHandler); // Filtrar por tipo
+filterRouter.get("/foundation/:foundationId", getFilteredPublicationsHandler); // Filtrar por fundación
+filterRouter.get("/alphabetical/asc", getFilteredPublicationsHandler); // Filtrar alfabéticamente ascendente
+filterRouter.get("/alphabetical/desc", getFilteredPublicationsHandler); // Filtrar alfabéticamente descendente
 
 module.exports = filterRouter;
+
