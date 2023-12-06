@@ -4,6 +4,10 @@ const PORT = process.env.PORT || 3001;
 // const { uploadTestData } = require('./src/utils/testDataUpload');
 
 conn.sync({ force: false }).then(async () => {
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+});
 
 //   // Verificar y cargar datos de prueba si es necesario
 //   const { usersCheck, publicationsCheck, /* ... otros checks ... */ } = await uploadTestData();
@@ -16,8 +20,3 @@ conn.sync({ force: false }).then(async () => {
 //   }
 
   // Iniciar el servidor
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-});
-

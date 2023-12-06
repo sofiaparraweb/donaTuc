@@ -1,7 +1,7 @@
 // controllers/DonationController.js
+const { User, Foundation, Donation } = require("../db");
 
-const { Donation, User, Foundation } = require("../db");
-
+console.log(Donation)
 // Controlador para crear una nueva donación
 const createDonation = async (userId, foundationId, amount) => {
   if (!userId || !foundationId || !amount) {

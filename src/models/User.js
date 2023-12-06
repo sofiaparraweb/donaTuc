@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
                 msg: "Debe ingresar un email válido"
             }
         },
+        
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -54,13 +55,14 @@ module.exports = (sequelize) => {
 
 
         },
-        status: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true
-        },
+        // status: {
+        //     type: DataTypes.BOOLEAN,
+        //     defaultValue: true
+        // },
     },
 {
     paranoid: true,
+    freezeTableName: true,
 }
     )
-}
+};

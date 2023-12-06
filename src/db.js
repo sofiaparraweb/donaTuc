@@ -35,7 +35,12 @@ fs.readdirSync(path.join(__dirname, "/models"))
     });
 
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach((model) => model(sequelize));
+modelDefiners.forEach((modelDefiner) => {
+    const modelName = modelDefiner.name;
+    console.log(`Cargando modelo: ${modelName}`);
+    modelDefiner(sequelize);
+});
+
 
 // Definimos las relaciones entre los modelos
 Object.keys(sequelize.models).forEach((modelName) => {
@@ -76,10 +81,13 @@ User.belongsToMany(User, { through: 'Chat', as: 'participants' });
 Publication.belongsTo(PublicationType);
 PublicationType.hasMany(Publication);
 
+// Sincronización de la base de datos
+sequelize.sync({ force: false }).then(async () => {
+    console.log("Database connected successfully!"); // Mensaje de conexión exitosa
+});
 
 module.exports = {
-    // ...sequelize.models,
-    // Cart,
-    conn: sequelize,
-};
+    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+    conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+ };
 

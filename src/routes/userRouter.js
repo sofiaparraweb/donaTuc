@@ -12,11 +12,11 @@ const {
 const userRouter = Router();
 
 // Rutas para usuarios
-userRouter.get("/:userId", getUserByIdHandler);
-userRouter.get("/email/:email", getUserByEmailHandler);
-userRouter.put("/:userId/edit", editUserHandler);
-userRouter.delete("/:userId", deleteUserHandler);
-userRouter.get("/", getAllUsersHandler);
+userRouter.get("/:userId", getUserByIdHandler); //funciona
+userRouter.get("/email/:email", getUserByEmailHandler); //funciona
+userRouter.put("/:userId/edit", editUserHandler); //funciona
+userRouter.delete("/:userId", deleteUserHandler); //funciona
+userRouter.get("/", getAllUsersHandler); //funciona
 userRouter.put("/:userId/assign-role", assignUserRoleHandler);
 
 module.exports = userRouter;
