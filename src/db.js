@@ -37,7 +37,6 @@ fs.readdirSync(path.join(__dirname, "/models"))
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((modelDefiner) => {
     const modelName = modelDefiner.name;
-    console.log(`Cargando modelo: ${modelName}`);
     modelDefiner(sequelize);
 });
 

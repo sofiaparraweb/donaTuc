@@ -1,19 +1,24 @@
-const { User, Publication, Comment } = require("../db");
+const { User, Publication, Comment, Role } = require("../db");
 const { Op } = require("sequelize");
+
+console.log("Valor de Role después de la importación:", Role);
 
 // Handler para obtener la lista de usuarios
 const getUsersList = async () => {
-  const usersList = await User.findAll({
-    include: [
-      {
-        model: Role,
-        through: { attributes: [] },
-      },
-     
-    ],
-  });
+  try {
+    console.log("Valor de User antes de findAll:", User);
+    const users = await User.findAll();
+    
+    // Verificar si se encontraron usuarios
+    if (!users || users.length === 0) {
+      throw new Error("No se encontraron usuarios");
+    }
 
-  return usersList;
+    return users;
+  } catch (error) {
+    console.log("Error al intentar findAll:", error);
+    throw error; // Lanzar el error para manejarlo en la función de manejo
+  }
 };
 
 // Handler para verificar una cuenta de usuario

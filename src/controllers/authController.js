@@ -1,7 +1,6 @@
 // controllers/AuthController.js
 
 const { User } = require("../db");
-// const { generateToken } = require("../utils/authUtils");
 
 // Controlador para registrar un nuevo usuario
 const registerUser = async (fullName, email, password) => {
@@ -30,16 +29,22 @@ const loginUser = async (email, password) => {
     throw new Error("Email and password are required for login");
   }
 
+  // Buscar al usuario por su email
   const user = await User.findOne({ where: { email } });
 
-  if (!user || user.password !== password) {
+  // Si no se encuentra el usuario, mostrar mensaje de registro
+  if (!user) {
+    throw new Error("User not found. Please register to login");
+  }
+
+  // Verificar la contraseña
+  if (user.password !== password) {
     throw new Error("Invalid email or password");
   }
 
-  const token = generateToken(user.id);
-
-  return { user, token };
-};
+  // Retornar los datos del usuario si todo es correcto
+  return user ;
+}
 
 // Controlador para cerrar sesión (logout)
 const logoutUser = async (userId) => {
